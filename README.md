@@ -110,7 +110,7 @@ ansible-playbook playbooks/start_server.yaml
 
 you can remove ssh key using follow command. `OPTIONAL` 
 ```bash
-gcloud compute config-ssh -- remove
+gcloud compute config-ssh --remove
 ```
 
 ### IMPORTANT
