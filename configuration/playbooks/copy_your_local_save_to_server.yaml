@@ -11,4 +11,4 @@
     - name: Copy file to destination
       copy:
         src: ../misc/vrising-local-saves/v3/
-        dest: /root/vrising/persistentdata/Saves/v3/
+        dest: /root/vrising/persistentdata/Saves/v3/world1
