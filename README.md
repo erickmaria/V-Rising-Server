@@ -98,7 +98,7 @@ ansible-playbook playbooks/install_server_dependencies.yaml
 
 > [!IMPORTANT]
 > - this playbook is optional, if you have a local save or any other save you can import on the server.
->   to make this copy your local *save files* inside folder `configuration/misc/vrising-local-saves/v3/`.
+>   to make this, copy your local *save files* to the folder `configuration/misc/vrising-local-saves/v3/`.
 >   ```bash
 >   ansible-playbook playbooks/copy_your_local_save_to_server.yaml
 >   ```
