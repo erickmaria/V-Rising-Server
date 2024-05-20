@@ -20,7 +20,8 @@ want.
 ```bash
 git clone https://github.com/erickmaria/r-rising-server.git
 cd r-rising-server
-# if you using
+# if you using envcontainer
+envcontainer build
 envcontainer start
 ```
 > [!IMPORTANT]
