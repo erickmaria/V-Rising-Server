@@ -1,0 +1,47 @@
+---
+- name: Create Backup Routine
+  hosts: vm-v-rising-server
+  connection: ssh
+  gather_facts: false
+  remote_user: root
+  become_method: sudo
+  become: yes
+
+  tasks:
+    - name: Update apt package cache
+      apt:
+        update_cache: yes
+
+    - name: Install packages to allow apt to use a repository over HTTPS
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - gnupg 
+        - python3
+        - python-setuptools
+        - python3-pip
+
+    - name: Install gsutil using pip
+      pip:
+        name: gsutil
+
+    - name: Copy file to destination(serviceaccount.json)
+      copy:
+        src:  ../../infraeasturure/serviceaccount.json 
+        dest: ./
+    
+    - name: Content file to destination (.boto)
+      copy:
+        content: |
+          [Credentials]
+          gs_service_key_file = serviceaccount.json 
+        dest: ./.boto
+
+    - name: Add a cron job to backup server files every day
+      cron:
+        name: "backup server files"
+        minute: "0"
+        hour: "0"
+        job: 'gsutil cp -r /root/vrising/persistentdata/ gs://bckt-v-rising-server/backup/$(date +\%Y-\%m-\%d-\%H-\%M-\%S)/'
+    

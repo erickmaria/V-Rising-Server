@@ -1,0 +1,15 @@
+plugin:  google.cloud.gcp_compute
+projects:
+  - {{ gcp_project_id }}
+regions:
+  - {{ gcp_project_region }}
+auth_kind: application
+scopes:
+ - 'https://www.googleapis.com/auth/cloud-platform'
+filters:
+  - status = RUNNING
+  - scheduling.automaticRestart = true AND status = RUNNING
+hostnames:
+  - name
+compose:
+  ansible_host: networkInterfaces[0].accessConfigs[0].natIP

@@ -1,0 +1,16 @@
+---
+- name: Start Server on Docker compose
+  hosts: vm-v-rising-server
+  connection: ssh
+  gather_facts: false
+  remote_user: root
+  become_method: sudo
+  become: yes
+
+  tasks:
+    - name: Copy file to destination
+      copy:
+        src: ../misc/docker-compose.yml
+        dest: ./
+    - name: Run a Docker container
+      command: docker compose up -d

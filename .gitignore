@@ -1,0 +1,10 @@
+# Ignore Terraform files
+*.tfstate
+*.lock.hcl
+*.tfstate.backup
+*.tfplan
+.terraform/
+
+*/inventory/*.yml
+
+serviceaccount.json
